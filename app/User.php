@@ -23,4 +23,53 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Proyectos pertenecientes al Usuario
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
+
+    /**
+     * Tareas de las cuales yo soy responsable
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tasks()
+    {
+        return $this->hasMany(Task::class, 'responsible_id')->with('project');
+    }
+
+    public function unfinishedTasks()
+    {
+        return $this->hasMany(Task::class, 'responsible_id')->with('project')->unfinished();
+    }
+
+    /**
+     * Nos indica si el usuario es o no admin
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        return $this->user_type == 'admin';
+    }
+
+    /**
+     * Sobreescritura del guardado del password para que quede
+     * inmediatamente con bcrypt sin importar el origen de
+     * esta llamada
+     *
+     * @param $password
+     */
+    public function setPasswordAttribute($password)
+    {
+        if ( ! empty($password))
+        {
+            $this->attributes['password'] = bcrypt($password);
+        }
+    }
 }

@@ -1,31 +1,145 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Routes File
-|--------------------------------------------------------------------------
-|
-| Here is where you will register all of the routes in an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| This route group applies the "web" middleware group to every route
-| it contains. The "web" middleware group is defined in your HTTP
-| kernel and includes session state, CSRF protection, and more.
-|
-*/
-
 Route::group(['middleware' => ['web']], function () {
-    //
+
+    Route::get('/', [
+        'uses' => 'PageController@home',
+        'as' => 'home_path'
+    ]);
+
+    Route::group(['middleware' => 'guest'], function(){
+        Route::post('ingresar', [
+            'as' => 'login_path',
+            'uses' => 'Auth\AuthController@postLogin'
+        ]);
+    });
+
+    Route::group(['middleware' => 'auth'], function(){
+
+
+        Route::get('salir', [
+            'as' => 'logout_path',
+            'uses' => 'Auth\AuthController@getLogout'
+        ]);
+
+        Route::group([
+            'as' => 'Projects::',
+            'prefix' => 'proyecto'
+        ], function(){
+
+            Route::get('', [
+                'as' => 'list_path',
+                'uses' => 'ProjectController@index'
+            ]);
+
+            Route::get('crear', [
+                'as' => 'create_path',
+                'uses' => 'ProjectController@create'
+            ]);
+
+            Route::put('crear', [
+                'as' => 'create_path',
+                'uses' => 'ProjectController@store'
+            ]);
+
+            Route::get('{project}', [
+                'as' => 'show_path',
+                'uses' => 'ProjectController@show'
+            ]);
+
+            Route::group([
+                'as' => 'Tasks::',
+                'prefix' => '{project}/tarea'
+            ], function(){
+                Route::get('crear', [
+                    'as' => 'create_path',
+                    'uses' => 'TaskController@create'
+                ]);
+
+                Route::put('crear', [
+                    'as' => 'create_path',
+                    'uses' => 'TaskController@store'
+                ]);
+
+                Route::get('{task}', [
+                    'as' => 'show_path',
+                    'uses' => 'TaskController@show'
+                ]);
+
+                Route::get('{task}/edit', [
+                    'as' => 'edit_path',
+                    'uses' => 'TaskController@edit'
+                ]);
+
+                Route::patch('{task}/edit', [
+                    'as' => 'edit_path',
+                    'uses' => 'TaskController@update'
+                ]);
+
+                Route::patch('{task}/finalizar', [
+                    'as' => 'finish_path',
+                    'uses' => 'TaskController@finish'
+                ]);
+            });
+        });
+
+
+
+        Route::group([
+            'as' => 'Tasks::',
+            'prefix' => 'tareas'
+        ], function(){
+
+            Route::get('', [
+                'as' => 'list_path',
+                'uses' => 'TaskController@index'
+            ]);
+        });
+
+
+        Route::group([
+            'middleware' => ['user.type:admin'],
+            'prefix' => 'admin',
+            'as' => 'Admin::',
+            'namespace' => 'Admin'
+        ], function(){
+            Route::get('', [
+                'as' => 'index_path',
+                'uses' => 'AdminController@index'
+            ]);
+
+            Route::group([
+                'as' => 'Users::',
+                'prefix' => 'usuarios'
+            ], function(){
+
+                Route::get('', [
+                    'as' => 'list_path',
+                    'uses' => 'UsersController@index'
+                ]);
+
+                Route::get('crear', [
+                    'as' => 'create_path',
+                    'uses' => 'UsersController@create'
+                ]);
+
+                Route::put('crear', [
+                    'as' => 'create_path',
+                    'uses' => 'UsersController@store'
+                ]);
+
+                Route::get('{user}', [
+                    'as' => 'edit_path',
+                    'uses' => 'UsersController@edit'
+                ]);
+
+                Route::patch('{user}', [
+                    'as' => 'edit_path',
+                    'uses' => 'UsersController@update'
+                ]);
+            });
+        });
+
+    });
+
 });

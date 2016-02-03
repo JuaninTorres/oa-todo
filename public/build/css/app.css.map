@@ -1,0 +1,1 @@
+{"version":3,"sources":["partials/_navbar.scss","partials/_body.scss"],"names":[],"mappings":"AAAA;EAGM,aAAa,EACd;;ACHL;EACE,kBAAkB;EAClB,qBAAqB,EACtB","file":"app.css","sourcesContent":["nav {\n  &.navbar-inverse {\n    label {\n      color: white;\n    }\n  }\n}","\nbody {\n  padding-top: 50px;\n  padding-bottom: 20px;\n}\n\n"],"sourceRoot":"/source/"}
