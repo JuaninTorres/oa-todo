@@ -1,6 +1,6 @@
 <div class="jumbotron">
     <div class="container">
-        <h1>{{ $title }}</h1>
+        @include('partials.headeranimated', compact('title'))
         @if( isset($content) )
             <p>{{ $content }}</p>
         @endif

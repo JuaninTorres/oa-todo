@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\TaskWasAssigned;
 use Illuminate\Http\Request;
 use App\Http\Requests\TaskRequest;
 use App\Task;
 use App\Project;
 use App\User;
+use Illuminate\Support\Facades\Log;
 use Laracasts\Flash\Flash;
 
 class TaskController extends Controller
@@ -52,8 +54,10 @@ class TaskController extends Controller
     public function update(TaskRequest $request, Project $project, Task $task)
     {
         $this->authorize($task);
-
+        $oldResponsible = $task->responsible;
         $task->update($request->all());
+
+        $this->notifyToNewResponsible($request, $task, $oldResponsible);
 
         Flash::success('La tarea se ha actualizado de manera correcta');
 
@@ -85,10 +89,9 @@ class TaskController extends Controller
     public function finish(Request $request, Project $project, Task $task)
     {
         $this->checkUnfinish($task);
-
         $task->update(['finished' => true]);
-
         Flash::success('Esta tarea se ha finalizado');
+        //TODO: Aqui deberíamos disparar un evento de que se ha finalizado la tarea
 
         return redirect()->back();
     }
@@ -106,17 +109,48 @@ class TaskController extends Controller
         return view('tasks.create', compact('project','users'));
     }
 
+    /**
+     * Creación de una tarea
+     *
+     * @param TaskRequest $request
+     * @param Project $project
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(TaskRequest $request, Project $project)
     {
         $inputs = $request->only(['name', 'description', 'responsible_id']);
-        $project->tasks()->create($inputs);
+        $task = $project->tasks()->create($inputs);
         Flash::success('Se ha creado una nueva tarea');
+        event(new TaskWasAssigned($task));
+        Log::info("Tarea Creada", ['task' => $task->name, 'responsible' => $task->responsible->name]);
 
         return redirect()->route('Projects::show_path', [$project->id]);
     }
 
+    /**
+     * Listado con las tareas que el usuario debe realizar
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         return view('tasks.own');
+    }
+
+    /**
+     * Se dispara el evento de que la tarea se ha asignado cuando haya un cambio de responsable
+     *
+     * @param TaskRequest $request
+     * @param Task $task
+     * @param User $oldResponsible
+     */
+    private function notifyToNewResponsible(TaskRequest $request, Task $task, User $oldResponsible)
+    {
+        if ($oldResponsible->id != $request->input('responsible_id'))
+        {
+            event(new TaskWasAssigned($task));
+            Log::info("Tarea Actualizada", ['task' => $task->name, 'responsible' => $task->responsible->name]);
+
+        }
     }
 }

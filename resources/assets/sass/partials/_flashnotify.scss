@@ -1,0 +1,67 @@
+.Alert {
+  color:#fff;
+  display: none;
+  padding:12px 30px;
+  border-radius:4px;
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  //box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.07);
+  @media only screen and (max-width:1050px){
+    text-align:center;
+    right:0;
+    left:50%;
+    width:300px;
+    margin-left:-150px;
+  }
+  a {
+    color: white;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  &--Muted{
+    background:#eee;
+    color:#3a3a3a;
+    border:1px solid #e2e2e2;
+    &-Dark{
+      background:#133259;
+      color:#e2e1e7;
+    }
+    a {
+      color: black;
+    }
+  }
+
+  &--Success {
+    color: #fff;
+    background: #99c93d;
+  }
+  &--Info a,&--Primary-Darker a{
+    color:#fff;
+  }
+  &--Danger{
+    background:#f76752;
+    color:#fff;
+  }
+  &--Primary{
+    background:#573e81;
+    &-Darker {
+      background:linear-gradient(to right,#133259 30%,#0d233e);
+    }
+  }
+
+  &--Info{
+    background:#00baf3;
+  }
+  &>ul{
+    padding-left:15px;
+  }
+  &>p:only-of-type{
+    margin-bottom:0;
+  }
+  i{
+    margin-right:8px;
+  }
+}
+
+

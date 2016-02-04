@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Michelf\Markdown;
 
 class Task extends Model
 {
@@ -62,7 +61,7 @@ class Task extends Model
      */
     public function getDescription()
     {
-        return Markdown::defaultTransform($this->description);
+        return transformMarkdowntoHtml($this->description);
     }
 
     /**

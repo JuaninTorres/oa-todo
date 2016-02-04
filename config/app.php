@@ -161,6 +161,7 @@ return [
          */
         Collective\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
+        VTalbot\Markdown\MarkdownServiceProvider::class,
 
         /*
          * Propios
@@ -219,6 +220,8 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Flash' => Laracasts\Flash\Flash::class,
+        'Uuid' => Webpatser\Uuid\Uuid::class,
+        'Markdown' => VTalbot\Markdown\Facades\Markdown::class,
     ],
 
 ];

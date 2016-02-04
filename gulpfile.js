@@ -17,6 +17,8 @@ elixir(function(mix) {
             'vendor/jquery/dist/jquery.js',
             'vendor/bootstrap/dist/js/bootstrap.js',
             'vendor/sweetalert/dist/sweetalert.min.js',
+            'vendor/pusher/dist/pusher.js',
+            'vendor/vue/dist/vue.js'
         ], 'public/js/all-vendors.js', 'public')
         .scripts([
             'ajax-helpers.js',

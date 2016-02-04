@@ -47,6 +47,16 @@ Route::group(['middleware' => ['web']], function () {
                 'uses' => 'ProjectController@show'
             ]);
 
+            Route::get('{project}/editar', [
+                'as' => 'edit_path',
+                'uses' => 'ProjectController@edit'
+            ]);
+
+            Route::patch('{project}/editar', [
+                'as' => 'edit_path',
+                'uses' => 'ProjectController@update'
+            ]);
+
             Route::group([
                 'as' => 'Tasks::',
                 'prefix' => '{project}/tarea'
@@ -66,12 +76,12 @@ Route::group(['middleware' => ['web']], function () {
                     'uses' => 'TaskController@show'
                 ]);
 
-                Route::get('{task}/edit', [
+                Route::get('{task}/editar', [
                     'as' => 'edit_path',
                     'uses' => 'TaskController@edit'
                 ]);
 
-                Route::patch('{task}/edit', [
+                Route::patch('{task}/editar', [
                     'as' => 'edit_path',
                     'uses' => 'TaskController@update'
                 ]);

@@ -1,27 +1,43 @@
-# Laravel PHP Framework
+# OA Todo
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+Este es un muy simple sistema "Todo Manager", que tratar de hacer uso del mayor uso de
+funcionalidades disponibles en [Laravel](http://laravel.com), solo con la finalidad de que
+podamos aprender a trabajar con este excelente Framework.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+## Instalación en un ambiente de desarrollo
+### Librerías necesarias (Dependencias)
+```
+composer install
+npm install
+bower install
+```
+### Variables de entorno
+#### Colas
+Los envío de correo se realizan haciendo uso de colas, por lo que es necesario que se 
+especifique la variable `QUEUE_DRIVER`
+#### Correo
+Para realizar los envío de correos tambien necesitan que se especifiquen las variables
+```
+MAIL_DEFAULT_EMAIL
+MAIL_DEFAULT_NAME
+MAIL_DRIVER
+```
+Además de todas las otras que sean propias de la configuración del servicio que se usará para
+realizar esta tarea.
+#### Broadcasting
+Se implementó un sistema de notificaciones, por lo que se necesita definir el valor de 
+la variable `BROADCAST_DRIVER`.
+Si se hace uso del servicio de [Pusher](https://pusher.com/), se necesitan estas variables definidas:
+```
+PUSHER_KEY
+PUSHER_SECRET
+PUSHER_APP_ID
+```
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
-
-## Official Documentation
-
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+## Tareas pendientes por realizar (Homework)
+- Evitar que aparezca la notificación de asignación de tarea, cuando se esté realizando una auto asignación de tareas.
+- Creación del evento de finalización de una tarea, esto involucra un envío de correo y la notificación a el o los involucrados
+- Crear algun indicador en la barra de navegación que nos indique la cantidad de tareas pendientes por realizar y ésta se pueda ir actualizando en tiempo real a través de los eventos con broadcasting.
+- Tanto el actual método de despliegue de la notificación de asignación, como el indicador del punto anterior, deben ser pasados a [VUE](http://vuejs.org/). Este cambio tambien tiene que considerar el soporte para multiples notificaciones y no que una nueva elimine a otra que se esté mostrando
+- Todas las pruebas de integración 
+- Y otras cosas más que en este momento no me puedo acordar :P

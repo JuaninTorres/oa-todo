@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Webpatser\Uuid\Uuid;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -23,6 +24,18 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Sobreescribimos lo que sucede al momento de crear un nuevo usuario
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($model){
+            $model->uuid = Uuid::generate(4);
+        });
+    }
 
     /**
      * Proyectos pertenecientes al Usuario

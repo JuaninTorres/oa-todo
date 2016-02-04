@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Michelf\Markdown;
 
 class Project extends Model
 {
@@ -40,7 +39,7 @@ class Project extends Model
      */
     public function getDescription()
     {
-        return Markdown::defaultTransform($this->description);
+        return transformMarkdowntoHtml($this->description);
     }
 
     /**

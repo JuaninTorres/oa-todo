@@ -3,7 +3,7 @@
 @section('header')
     <div class="jumbotron">
         <div class="container">
-            <h1>{{ $task->name }}</h1>
+            @include('partials.headeranimated', ['title' => $task->name])
             @can('update', $task)
                 @if( ! $task->finished )
                     {!! Form::open(['route' => ['Projects::Tasks::finish_path', $project->id, $task->id], 'method' => 'PATCH', 'role' => 'form', 'class' => 'form-inline']) !!}
@@ -43,6 +43,8 @@
                     <dl class="dl-horizontal">
                         <dt>Creación</dt>
                         <dd>{{ $task->created_at->diffForHumans() }}</dd>
+                        <dt>Última actualización</dt>
+                        <dd>{{ $task->updated_at->diffForHumans() }}</dd>
                         <dt>Responsable</dt>
                         <dd>{{ $task->responsible->name }}</dd>
                         <dt>Finalizada</dt>

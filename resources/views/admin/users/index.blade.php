@@ -1,9 +1,12 @@
 @extends('app')
 
+@section('header')
+    @include('partials.jumbotron', ['title' => "Usuarios"])
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <h2>Usuarios</h2>
             <table class="table">
                 <thead>
                 <tr>

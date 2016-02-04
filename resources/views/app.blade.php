@@ -13,7 +13,11 @@
         @include('partials.footer')
     </div> <!-- /container -->
 
+    <div id="flash-message" class="Alert Alert--Success animate" role="alert">
+        Lo que sea que se me ocurra colocar
+    </div>
     @include('partials.footerpage')
+    @include('partials.flash-notify')
     @yield('scripts')
 </body>
 </html>

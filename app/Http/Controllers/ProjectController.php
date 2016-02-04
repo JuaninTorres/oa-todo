@@ -21,6 +21,12 @@ class ProjectController extends Controller
         return view('projects.own');
     }
 
+    /**
+     * Despliegue del proyecto
+     *
+     * @param Project $project
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show(Project $project)
     {
         return view('projects.show', compact('project'));
@@ -40,7 +46,7 @@ class ProjectController extends Controller
         $project->update($request->all());
         Flash::success('El proyecto se ha actualizado de manera correcta');
 
-        return redirect()->back();
+        return redirect()->route('Projects::show_path',[$project->id]);
     }
 
     /**
@@ -67,4 +73,16 @@ class ProjectController extends Controller
 
         return redirect()->route('Projects::list_path');
     }
+
+    /**
+     * Formulario de edición de un proyecto
+     *
+     * @param Project $project
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit(Project $project)
+    {
+        return view('projects.edit', compact('project'));
+    }
+
 }

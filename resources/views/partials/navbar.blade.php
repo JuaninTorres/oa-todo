@@ -7,7 +7,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ route('home_path') }}">OA Todo</a>
+            {{--<a class="navbar-brand" href="{{ route('home_path') }}">OA Todo</a>--}}
+            <a class="navbar-brand" href="{{ route('home_path') }}">
+                <img alt="OA Todo" src="{{ asset('images/logo_oa.png') }}">
+            </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             @if( $currentUser )
@@ -32,7 +35,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tareas <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li>{{ link_to_route('Tasks::list_path', 'Mis tareas') }}</li>
+                            <li>{{ link_to_route('Tasks::list_path', 'Mis tareas pendientes') }}</li>
                         </ul>
                     </li>
                 </ul>

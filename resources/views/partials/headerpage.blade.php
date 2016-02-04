@@ -9,10 +9,19 @@
 
     {{--Bootstrap core CSS--}}
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/dist/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendor/bootstrap/dist/css/bootstrap-theme.min.css') }}">
+{{--    <link rel="stylesheet" href="{{ asset('vendor/bootstrap/dist/css/bootstrap-theme.min.css') }}">--}}
+
+    {{--Temas alternativos--}}
+    {{--<link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css">--}}
+    {{--<link rel="stylesheet" href="https://bootswatch.com/simplex/bootstrap.min.css">--}}
+    {{--<link rel="stylesheet" href="https://bootswatch.com/slate/bootstrap.min.css">--}}
+    {{--<link rel="stylesheet" href="https://bootswatch.com/spacelab/bootstrap.min.css">--}}
+    {{--<link rel="stylesheet" href="https://bootswatch.com/superhero/bootstrap.min.css">--}}
+
     <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/font-awesome.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('vendor/ionicons/css/ionicons.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('vendor/sweetalert/dist/sweetalert.css') }}" />
+    <link rel="stylesheet" href="{{ asset('vendor/animate.css/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ elixir('css/app.css') }}" />
 
     <!--[if lt IE 9]>

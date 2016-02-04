@@ -3,7 +3,7 @@
 @section('header')
     <div class="jumbotron">
         <div class="container">
-            <h1>{{ $project->name }}</h1>
+            @include('partials.headeranimated', ['title' => $project->name])
             {!! $project->getDescription() !!}
             @include('partials.progressbar', ['value' => $project->progress])
         </div>
@@ -45,6 +45,9 @@
             <a href="{{ route('Projects::Tasks::create_path', [$project->id]) }}" class="btn btn-primary">
                 <i class="fa fa-check-square"></i> Crear nueva tarea
             </a>
+                <a href="{{ route('Projects::edit_path', [$project->id]) }}" class="btn btn-info">
+                    <i class="fa fa-pencil"></i> Editar el proyecto
+                </a>
         </div>
     </div>
 @endsection

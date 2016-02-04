@@ -92,7 +92,8 @@
                 a.closest('form').submit();
             }
         });
-    }
+    };
+
 
 
     // Los formularios con el atributo 'data-remote' serán procesados como AJAX
