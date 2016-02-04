@@ -33,6 +33,11 @@ PUSHER_KEY
 PUSHER_SECRET
 PUSHER_APP_ID
 ```
+#### Creación de las migraciones y data de prueba
+```
+php artisan migrate --seed
+```
+
 
 ## Tareas pendientes por realizar (Homework)
 - Evitar que aparezca la notificación de asignación de tarea, cuando se esté realizando una auto asignación de tareas.

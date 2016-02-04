@@ -9,7 +9,7 @@
 
     {{--Bootstrap core CSS--}}
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/dist/css/bootstrap.min.css') }}">
-{{--    <link rel="stylesheet" href="{{ asset('vendor/bootstrap/dist/css/bootstrap-theme.min.css') }}">--}}
+    <link rel="stylesheet" href="{{ asset('vendor/bootstrap/dist/css/bootstrap-theme.min.css') }}">
 
     {{--Temas alternativos--}}
     {{--<link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css">--}}
