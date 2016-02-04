@@ -12,6 +12,9 @@ npm install
 bower install
 ```
 ### Variables de entorno
+#### URL del sistema
+Al hacer uso de colas externas, es necesario que se configure la variable `BASE_URL` para que cuando se intenten armar URLs en estas tareas, éstas se creen de manera correcta.
+
 #### Colas
 Los envío de correo se realizan haciendo uso de colas, por lo que es necesario que se 
 especifique la variable `QUEUE_DRIVER`
