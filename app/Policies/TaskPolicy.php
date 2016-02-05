@@ -20,8 +20,8 @@ class TaskPolicy
      */
     public function update(User $user, Task $task)
     {
-        $creator = $user->id === $task->project->user_id;
-        $responsible = $user->id === $task->responsible_id;
+        $creator = $user->id === (int)$task->project->user_id;
+        $responsible = $user->id === (int)$task->responsible_id;
 
         return $creator or $responsible;
     }
