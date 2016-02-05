@@ -4,6 +4,7 @@ namespace App\Events;
 
 use App\Events\Event;
 use App\Task;
+use App\User;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
@@ -14,15 +15,21 @@ class TaskWasFinished extends Event implements ShouldBroadcast
      * @var Task
      */
     public $task;
+    /**
+     * @var User
+     */
+    public $finisher;
 
     /**
      * Create a new event instance.
      *
      * @param Task $task
+     * @param User $finisher
      */
-    public function __construct(Task $task)
+    public function __construct(Task $task, User $finisher)
     {
         $this->task = $task;
+        $this->finisher = $finisher;
     }
 
     /**

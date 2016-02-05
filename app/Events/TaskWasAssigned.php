@@ -3,6 +3,7 @@
 namespace App\Events;
 
 use App\Task;
+use App\User;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
@@ -15,15 +16,21 @@ class TaskWasAssigned extends Event implements ShouldBroadcast
      * @var Task
      */
     public $task;
+    /**
+     * @var User
+     */
+    public $assigner;
 
     /**
      * Se crea una nueva instancia del evento
      *
      * @param Task $task
+     * @param User $assigner
      */
-    public function __construct(Task $task)
+    public function __construct(Task $task, User $assigner)
     {
         $this->task = $task;
+        $this->assigner = $assigner;
     }
 
 

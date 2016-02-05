@@ -17,7 +17,7 @@ class Email implements ShouldQueue
     {
         $task = $event->task;
         $user = $task->responsible;
-        $assigner = Auth::user();
+        $assigner = $event->assigner;
 
         Log::info('Responsible', ['id' => $user->id]);
         Log::info('Assigner', ['id' => $assigner->id]);
@@ -41,7 +41,7 @@ class Email implements ShouldQueue
     {
         $task = $event->task;
         $user = $task->project->user;
-        $finisher = Auth::user();
+        $finisher = $event->finisher;
 
         if($user->id != $finisher->id)
         {

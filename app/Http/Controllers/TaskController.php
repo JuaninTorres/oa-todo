@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Task;
+use App\User;
+use App\Project;
 use App\Events\TaskWasAssigned;
 use App\Events\TaskWasFinished;
-use Illuminate\Http\Request;
 use App\Http\Requests\TaskRequest;
-use App\Task;
-use App\Project;
-use App\User;
-use Illuminate\Support\Facades\Log;
 use Laracasts\Flash\Flash;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class TaskController extends Controller
 {
@@ -95,7 +95,7 @@ class TaskController extends Controller
         $this->checkUnfinish($task);
         $task->update(['finished' => true]);
         Flash::success('Esta tarea se ha finalizado');
-        event(new TaskWasFinished($task));
+        event(new TaskWasFinished($task, $this->user));
 
         return redirect()->back();
     }
@@ -125,7 +125,7 @@ class TaskController extends Controller
         $inputs = $request->only(['name', 'description', 'responsible_id']);
         $task = $project->tasks()->create($inputs);
         Flash::success('Se ha creado una nueva tarea');
-        event(new TaskWasAssigned($task));
+        event(new TaskWasAssigned($task, $this->user));
         Log::info("Tarea Creada", ['task' => $task->name, 'responsible' => $task->responsible->name]);
 
         return redirect()->route('Projects::show_path', [$project->id]);
@@ -152,7 +152,7 @@ class TaskController extends Controller
     {
         if ($oldResponsible->id != $request->input('responsible_id'))
         {
-            event(new TaskWasAssigned($task));
+            event(new TaskWasAssigned($task, $this->user));
             Log::info("Tarea Actualizada", ['task' => $task->name, 'responsible' => $task->responsible->name]);
         }
     }
