@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('header')
-    @include('partials.jumbotron', ['title' => 'Mis tareas pendientes'])
+    @include('partials.components.jumbotron', ['title' => 'Mis tareas pendientes'])
 @endsection
 
 @section('content')
@@ -12,5 +12,6 @@
     </div>
 @endsection
 
-@section('scripts')
+@section('title')
+    | Mis tareas pendientes
 @endsection

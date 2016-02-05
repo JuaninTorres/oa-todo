@@ -12,7 +12,7 @@
                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                         <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
                             <p>Estimad@ {{ $user->name }},</p>
-                            <p>Le comunicamos que <strong>{{ $assigner->name }}</strong>, le acaba de asignar una nueva tarea:</p>
+                            <p>Le comunicamos que <strong>{{ $finisher->name }}</strong>, acaba de finalizar una tarea:</p>
                             <ul>
                                 <li><strong>Proyecto: </strong><a href="{{ route('Projects::show_path', [$task->project->id]) }}">{{ $task->project->name }}</a></li>
                                 <li><strong>Tarea: </strong><a href="{{ route('Projects::Tasks::show_path', [$task->project->id, $task->id]) }}">{{ $task->name }}</a></li>

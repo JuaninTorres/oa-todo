@@ -16,6 +16,15 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['middleware' => 'auth'], function(){
 
+        Route::get('perfil', [
+            'as' => 'profile_path',
+            'uses' => 'ProfileController@edit',
+        ]);
+
+        Route::patch('perfil', [
+            'as' => 'profile_path',
+            'uses' => 'ProfileController@update',
+        ]);
 
         Route::get('salir', [
             'as' => 'logout_path',

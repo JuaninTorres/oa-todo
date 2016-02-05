@@ -14,7 +14,7 @@
                         {{ $project->name }}
                     </a>
                 </td>
-                <td>@include('partials.progressbar', ['value' => $project->progress])</td>
+                <td>@include('partials.components.progressbar', ['value' => $project->progress])</td>
             </tr>
         @endforeach
         </tbody>

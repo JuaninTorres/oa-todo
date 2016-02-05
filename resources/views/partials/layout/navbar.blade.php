@@ -44,13 +44,18 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-hand-spock-o"></i> {{ $currentUser->name }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>
+                                <a href="{{ route('profile_path') }}">
+                                    Editar perfil
+                                </a>
+                            </li>
+                            <li>
                                 {{ link_to_route('logout_path', 'Salir') }}
                             </li>
                         </ul>
                     </li>
                 </ul>
             @else
-                @include('partials.formlogin')
+                @include('partials.layout.formlogin')
             @endif
         </div><!--/.navbar-collapse -->
     </div>

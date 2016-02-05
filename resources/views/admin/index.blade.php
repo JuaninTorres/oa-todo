@@ -1,7 +1,11 @@
 @extends('app')
 
+@section('title')
+    | Admin | Panel de control del administrador
+@endsection
+
 @section('header')
-    @include('partials.jumbotron', ['title' => "Panel de control del administrador"])
+    @include('partials.components.jumbotron', ['title' => "Panel de control del administrador"])
 @endsection
 
 @section('content')

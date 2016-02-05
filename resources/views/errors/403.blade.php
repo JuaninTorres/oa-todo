@@ -4,6 +4,7 @@
         <title>Acceso no autorizado</title>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/font-awesome.min.css') }}" />
 
         <style>
             html, body {
@@ -42,6 +43,9 @@
             <div class="content">
                 <h1>Error 403</h1>
                 <div class="title">No está autorizado para realizar esta operación</div>
+                <div class="title">
+                    <i class="fa fa-ban"></i>
+                </div>
             </div>
         </div>
     </body>

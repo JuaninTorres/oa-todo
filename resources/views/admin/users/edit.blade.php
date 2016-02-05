@@ -1,15 +1,19 @@
 @extends('app')
 
+@section('title')
+    | Admin | Usuarios | Edición
+@endsection
+
 @section('header')
-    @include('partials.jumbotron', ['title' => $user->name])
+    @include('partials.components.jumbotron', ['title' => $user->name])
 @endsection
 
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @include('partials.errors')
-            {!! Form::model($user, ['route' => ['Admin::Users::edit_path', $user->id], 'method'=>'PATCH', 'role'=>'form']) !!}
-                @include('admin.users.form', ['btnTexto' => 'Guardar'])
+            @include('partials.components.errors')
+            {!! Form::model($user, ['route' => ['Admin::Users::edit_path', $user->id], 'method'=>'PATCH', 'role'=>'form', 'class' => 'form-horizontal']) !!}
+                @include('partials.users.form', ['btnText' => 'Guardar'])
             {!! Form::close() !!}
         </div>
     </div>

@@ -1,14 +1,18 @@
 @extends('app')
 
+@section('title')
+    | Proyecto | Edición: {{ $project->name }}
+@endsection
+
 @section('header')
-    @include('partials.jumbotron', ['title' => 'Edición: ' . $project->name])
+    @include('partials.components.jumbotron', ['title' => 'Edición: ' . $project->name])
 @endsection
 
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @include('partials.errors')
-            {!! Form::model($project, ['route' => ['Projects::edit_path', $project->id], 'method' => 'PATCH', 'role' => 'form']) !!}
+            @include('partials.components.errors')
+            {!! Form::model($project, ['route' => ['Projects::edit_path', $project->id], 'method' => 'PATCH', 'role' => 'form', 'class' => 'form-horizontal']) !!}
                 @include('projects.partials.form', ['btnText' => 'Actualizar'])
             {!! Form::close() !!}
         </div>

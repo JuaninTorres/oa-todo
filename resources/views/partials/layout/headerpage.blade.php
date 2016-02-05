@@ -3,9 +3,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Simple Todo Manager hecho con Laravel 5.2">
-    <meta name="author" content="Openagora | Juan Torres">
+    <meta name="author" content="Juan Torres | Openagora">
 
-    <title>@yield('title', 'OA Todo')</title>
+    <title>OA Todo @yield('title')</title>
 
     {{--Bootstrap core CSS--}}
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/dist/css/bootstrap.min.css') }}">

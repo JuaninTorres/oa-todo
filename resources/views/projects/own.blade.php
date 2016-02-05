@@ -1,7 +1,11 @@
 @extends('app')
 
+@section('title')
+    | Mis Proyectos
+@endsection
+
 @section('header')
-    @include('partials.jumbotron', ['title' => 'Mis Proyectos'])
+    @include('partials.components.jumbotron', ['title' => 'Mis Proyectos'])
 @endsection
 
 @section('content')

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\TaskWasAssigned;
+use App\Events\TaskWasFinished;
 use Illuminate\Http\Request;
 use App\Http\Requests\TaskRequest;
 use App\Task;
@@ -37,6 +38,8 @@ class TaskController extends Controller
      */
     public function edit(Project $project, Task $task)
     {
+        $this->authorize('update', $task);
+
         $this->checkUnfinish($task);
         $users = User::all()->sortBy('name')->pluck('name', 'id')->toArray();
 
@@ -73,7 +76,6 @@ class TaskController extends Controller
     {
         if($task->finished)
         {
-            //TODO: Esto se podría mejorar arrojando una excepcion que sea mas buena onda que un abort
             abort(403);
         }
     }
@@ -88,10 +90,12 @@ class TaskController extends Controller
      */
     public function finish(Request $request, Project $project, Task $task)
     {
+        $this->authorize('update', $task);
+
         $this->checkUnfinish($task);
         $task->update(['finished' => true]);
         Flash::success('Esta tarea se ha finalizado');
-        //TODO: Aqui deberíamos disparar un evento de que se ha finalizado la tarea
+        event(new TaskWasFinished($task));
 
         return redirect()->back();
     }
@@ -150,7 +154,6 @@ class TaskController extends Controller
         {
             event(new TaskWasAssigned($task));
             Log::info("Tarea Actualizada", ['task' => $task->name, 'responsible' => $task->responsible->name]);
-
         }
     }
 }

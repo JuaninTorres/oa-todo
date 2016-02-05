@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\TaskWasAssigned' => [
             'App\Listeners\Email@taskWasAssigned',
         ],
+        'App\Events\TaskWasFinished' => [
+            'App\Listeners\Email@taskWasFinished'
+        ],
     ];
 
     /**

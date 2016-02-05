@@ -10,12 +10,12 @@ body {
 
 .Alert {
   color: #fff;
-  display: none;
   padding: 12px 30px;
   border-radius: 4px;
   position: fixed;
   bottom: 20px;
-  right: 20px; }
+  right: 20px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2); }
   @media only screen and (max-width: 1050px) {
     .Alert {
       text-align: center;
