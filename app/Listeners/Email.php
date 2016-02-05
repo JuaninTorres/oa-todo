@@ -19,6 +19,9 @@ class Email implements ShouldQueue
         $user = $task->responsible;
         $assigner = Auth::user();
 
+        Log::info('Responsible', ['id' => $user->id]);
+        Log::info('Assigner', ['id' => $assigner->id]);
+
         if($user->id != $assigner->id)
         {
             $subject = '[OA-TODO] Se te ha asignado la tarea: ' . $task->name;

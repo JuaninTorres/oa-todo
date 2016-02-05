@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-md-12">
             @include('partials.components.errors')
-            {!! Form::open(['route' => ['Projects::Tasks::create_path', $project->id], 'method' => 'PUT', 'role'=>'form']) !!}
+            {!! Form::open(['route' => ['Projects::Tasks::create_path', $project->id], 'method' => 'PUT', 'role'=>'form', 'class' => 'form-horizontal']) !!}
                 @include('tasks.partials.form', ['btnText' => 'Crear', 'users' => $users])
             {!! Form::close() !!}
         </div>
