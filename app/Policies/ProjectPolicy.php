@@ -19,7 +19,7 @@ class ProjectPolicy
      */
     public function update(User $user, Project $project)
     {
-        return $user->id === $project->user_id;
+        return $user->id === (int)$project->user_id;
     }
 
     /**
