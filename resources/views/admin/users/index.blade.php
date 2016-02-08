@@ -29,6 +29,8 @@
                 @endforeach
                 </tbody>
             </table>
+            <a href="{{ route('Admin::Users::create_path') }}" class="btn btn-primary">
+                <i class="fa fa-user"></i> Crear nuevo usuario</a>
         </div>
     </div>
 @endsection

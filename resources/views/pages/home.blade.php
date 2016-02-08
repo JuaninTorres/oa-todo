@@ -21,6 +21,8 @@
                       </div>
                 	  <div class="panel-body">
                           @include('projects.partials.list', ['projects' => $currentUser->projects])
+                          <a href="{{ route('Projects::create_path') }}" class="btn btn-primary">
+                              <i class="fa fa-plus"></i> Crear nuevo proyecto</a>
                 	  </div>
                 </div>
             </div>
